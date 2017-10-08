@@ -1,0 +1,28 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <include file="struts-default.xml"/>
+    <package name="management" extends="struts-default">
+    	<action name="SearchAction" class="management.SearchAction" >
+    		<result>Search.jsp</result>
+    	</action>
+    	<action name="DetailAction" class="management.DetailAction" >
+    		<result>Detail.jsp</result>
+    	</action>
+    	<action name="DeleteAction" class="management.DeleteAction" >
+    		<result>Success.jsp</result>
+    	</action>
+    	<action name="AddBookAction" class="management.AddBookAction">
+    		<result name="success" >Success.jsp</result>
+    		<result name="error">AddAuthor.jsp</result> 
+    	</action>
+    	<action name="AddAuthorAction" class="management.AddAuthorAction">
+    		<result>Success.jsp</result>
+    	</action>
+    	<action name="UpdateBookAction" class="management.UpdateBookAction">
+    		<result>Success.jsp</result>
+    	</action>
+    </package>
+    
+</struts>
