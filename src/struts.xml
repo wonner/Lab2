@@ -23,6 +23,9 @@
     	<action name="UpdateBookAction" class="management.UpdateBookAction">
     		<result>Success.jsp</result>
     	</action>
+    	<action name="TotalAction" class="management.TotalAction">
+    		<result>Main.jsp</result>
+    	</action>
     </package>
     
 </struts>

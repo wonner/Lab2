@@ -55,7 +55,34 @@ public class DBConnection {
 		return titleList;
 	}
 	
-	
+	public ArrayList<Book> totalBook() throws SQLException
+	{
+		ArrayList<Book> titleList=new ArrayList<>();
+		Statement statement = conn.createStatement();	// statement用来执行SQL语句
+		Statement statement1= conn.createStatement();
+		String sql = "SELECT * FROM book";	// 要执行的SQL语句
+		ResultSet rs = statement.executeQuery(sql);	// 结果集
+		while(rs.next())
+		{
+			String ISBN=rs.getString("ISBN");
+			String title=rs.getString("Title");
+			String authorID=rs.getString("AuthorID");
+			String publisher=rs.getString("Publisher");
+			Date publishDate=rs.getDate("PublishDate");
+			float price=rs.getFloat("Price");
+			sql = "select * from author where AuthorID='"+authorID+"'";
+			ResultSet rs1=statement1.executeQuery(sql);
+			if(rs1.next()){  
+				int age=rs1.getInt("Age");
+				String country=rs1.getString("Country");
+				titleList.add(new Book(ISBN,title,authorID,null,age,country,publisher,publishDate,price));   //将找出的数据存入messageList  
+		    }
+		}  
+		statement.close();
+	    rs.close();
+		conn.close();
+		return titleList;
+	}
 	
 	public Book detailBook(String ISBN) throws SQLException
 	{
@@ -163,104 +190,4 @@ public class DBConnection {
 		}
 	}
 	
-	public int getCountPage(int line) throws SQLException	//首页页数计算
-	{
-		Statement statement = conn.createStatement();	// statement用来执行SQL语句
-		String sql = "SELECT COUNT(*) AS num FROM book";	// 要执行的SQL语句
-		ResultSet rs = statement.executeQuery(sql);	// 结果集
-		int total=0,countPage=0;
-		
-		if(rs.next()) { total = rs.getInt("num"); }  //total为留言的总条数
-		countPage = (total % line == 0 ? total / line: total  
-                / line + 1); 
-		statement.close();
-		rs.close();
-		conn.close();
-		if (countPage != 0)  
-            return countPage;  
-        return countPage + 1;
-	}	
-	
-	public ArrayList<Book> getMessage(int currentPage,int line) throws SQLException		//读取书名
-	{
-		PreparedStatement ps = null;
-		ResultSet rs =null;	// 结果集
-		ArrayList<Book> titleList = new ArrayList<>(); 
-		String sql = "SELECT * FROM book limit "+(currentPage - 1) * line+","+line;	// 要执行的SQL语句
-		
-		ps = conn.prepareStatement(sql);  
-        //ps.setInt(1, (currentPage - 1) * line);  
-        //ps.setInt(2, line);  
-        rs = ps.executeQuery();
-		
-        while (rs.next()) {  
-            titleList.add(new Book(rs.getString("Title")));   //将找出的数据存入messageList  
-        }  
-        ps.close();
-		rs.close();
-		conn.close();
-		return titleList;
-	}
-	
-	
-	
-/*	
-public static void main(String[] args){
-
-           
-
-           
-           
-
-           
-           
-
-           
-           
-
-            System.out.println("-----------------");
-            System.out.println("执行结果如下所示:");
-            System.out.println("-----------------");
-            System.out.println(" 学号" + "\t" + " 姓名");
-            System.out.println("-----------------");
-
-            String name = null;
-
-            while(rs.next()) {
-    
-             // 选择sname这列数据
-             name = rs.getString("ISBN");
-    
-             // 首先使用ISO-8859-1字符集将name解码为字节序列并将结果存储新的字节数组中。
-             // 然后使用GB2312字符集解码指定的字节数组
-             //name = new String(name.getBytes("ISO-8859-1"),"GB2312");
-
-             // 输出结果
-             System.out.println(rs.getString("title") + "\t" + name);
-            }
-
-            rs.close();
-            conn.close();
-
-           } catch(ClassNotFoundException e) {
-
-
-            System.out.println("Sorry,can`t find the Driver!"); 
-            e.printStackTrace();
-
-
-           } catch(SQLException e) {
-
-
-            e.printStackTrace();
-
-
-           } catch(Exception e) {
-
-
-            e.printStackTrace();
-
-
-           } 
-} */
 }

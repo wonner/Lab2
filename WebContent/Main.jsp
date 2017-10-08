@@ -33,8 +33,23 @@
 		<s:textfield name="upcountry" label="Country"></s:textfield>
 		<s:submit value="更新"></s:submit>
 	</s:form>
-	
-	
-	
+
+	<table border="1">
+		<tr>
+			<th width="100">序号 </th>
+			<th width="500">书名</th>
+			<th width="100">选项</th>
+		</tr>
+		<s:iterator value="totalList" id="b" status="st">
+		
+		<tr>
+			<td align="center">${st.index+1}</td>
+			<td><a href="DetailAction.action?bookISBN=${b.ISBN }">${b.title}</a> </td>
+			<td align="center"><a href="DeleteAction.action?bookISBN=${b.ISBN }">删除</a></td>
+		</tr>	
+
+		</s:iterator>	
+	</table>
+
 </body>
 </html>

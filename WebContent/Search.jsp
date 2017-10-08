@@ -9,7 +9,7 @@
 <title>搜索结果</title>
 </head>
 <body>
-	<a href="Main.jsp">返回</a>
+	<a href="Index.jsp">返回</a>
 	
 	<table border="1">
 		<tr>
