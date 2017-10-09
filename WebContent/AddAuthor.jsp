@@ -12,7 +12,7 @@
 	
 	<s:form action="AddAuthorAction">
 		<h>无该作者，请添加作者信息</h><br>
-		<s:textfield name="authorid" label="AuthorID"></s:textfield>
+		<s:textfield name="authorid" label="AuthorID" readonly="true"></s:textfield>
 		<s:textfield name="name" label="Name"></s:textfield>
 		<s:textfield name="age" label="Age"></s:textfield>
 		<s:textfield name="country" label="Country"></s:textfield>
