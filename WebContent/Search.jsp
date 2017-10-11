@@ -15,7 +15,8 @@
 		<tr>
 			<th width="100">序号 </th>
 			<th width="500">书名</th>
-			<th width="100">选项</th>
+			<th width="100">删除选项</th>
+			<th width="100">更新选项</th>
 		</tr>
 		<s:iterator value="titleList" id="b" status="st">
 		
@@ -23,6 +24,7 @@
 			<td align="center">${st.index+1}</td>
 			<td><a href="DetailAction.action?bookISBN=${b.ISBN }">${b.title}</a> </td>
 			<td align="center"><a href="DeleteAction.action?bookISBN=${b.ISBN }">删除</a></td>
+			<td align="center"><a href="Update.jsp?upisbn=${b.ISBN }">更新</a></td>
 		</tr>	
 
 		</s:iterator>	

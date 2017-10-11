@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DBConnection {
 	
 	private String driver = "com.mysql.jdbc.Driver"; // 驱动程序名
-	private String url = "jdbc:mysql://127.0.0.1:3306/book"; // URL指向要访问的数据库名
+	private String url = "jdbc:mysql://ajpinvgwhudt.mysql.sae.sina.com.cn:10667/book"; // URL指向要访问的数据库名
 	private String user = "root";  // MySQL配置时的用户名
 	private String password = "yyww123456"; // MySQL配置时的密码
 	private static Connection conn;
